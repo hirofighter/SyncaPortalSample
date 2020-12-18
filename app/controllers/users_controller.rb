@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.all
+    @users = User.order(id: :asc)
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
   def new
@@ -9,7 +13,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    User.create(user_params)
+    user = User.create!(user_params)
+    redirect_to user
   end
 
   def edit
@@ -19,16 +24,13 @@ class UsersController < ApplicationController
   def update
     user = User.find(params[:id])
     user.update(user_params)
+    redirect_to user
   end
-
-  # def show
-  #   @user = User.find(params[:id])
-  # end
-
 
   def destroy
     user = User.find(params[:id])
     user.destroy
+    redirect_to user
   end
 
   private

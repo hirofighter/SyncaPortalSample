@@ -1,9 +1,21 @@
-<p>一覧</p>
-<% @users.each do |user| %>
-  <p>
-    <%= user.name %>
-    <%= user.age %>
-    <%= link_to "削除", user_path(user), method: :delete, data: {confirm: "削除しますか?"} %>
-    <%= link_to "編集", edit_user_path(user) %>
-  </p>
-<% end %>
+<h1>ユーザー一覧</h1>
+<table>
+  <thead>
+    <tr>
+      <th scope="col">名前</th>
+      <th scope="col">年齢</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.age %></td>
+        <td>
+          <%= link_to "削除", user_path(user), method: :delete, data: {confirm: "削除しますか?"} %>
+          <%= link_to "編集", edit_user_path(user) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
